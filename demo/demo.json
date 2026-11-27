@@ -1,0 +1,16 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 6.4,
+      "text": "老大,看,这张脸是我自己搭的,最行跟着自走,眼睛也会炸。"
+    }
+  ],
+  "meta": {
+    "source": "demo.mp4",
+    "model": "tiny",
+    "language": "zh",
+    "task": "transcribe",
+    "target": null
+  }
+}
