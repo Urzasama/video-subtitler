@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>video-subtitler — subtitles in one drop</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark">▮▮</span>
+    <div>
+      <h1>video-subtitler</h1>
+      <p class="sub">Drop a video, get subtitles — transcribe, translate, burn in.</p>
+    </div>
+  </div>
+  <span class="ver" id="ver">v0.1.0</span>
+</header>
+
+<main>
+  <section class="card">
+    <div id="drop" class="drop">
+      <input id="file" type="file" accept="video/*,audio/*" hidden />
+      <p class="drop-title">拖入视频 / 音频，或点击选择文件</p>
+      <p class="drop-hint" id="fileName">mp4 · mkv · mov · mp3 · wav · m4a（≤ 4 GB）</p>
+    </div>
+
+    <div class="opts">
+      <label class="opt">
+        <span>模型</span>
+        <select id="model">
+          <option value="tiny" selected>tiny（最快，~75 MB）</option>
+          <option value="base">base</option>
+          <option value="small">small</option>
+          <option value="medium">medium</option>
+        </select>
+      </label>
+      <label class="opt">
+        <span>模式</span>
+        <select id="task">
+          <option value="transcribe" selected>转录（保持原语言）</option>
+          <option value="translate">转录并翻译成英文（离线）</option>
+        </select>
+      </label>
+      <label class="opt">
+        <span>语言提示</span>
+        <select id="language">
+          <option value="" selected>自动检测</option>
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </label>
+      <label class="opt">
+        <span>行长上限</span>
+        <input id="maxChars" type="number" min="0" max="80" step="2" value="0" />
+      </label>
+      <label class="opt check">
+        <input id="burn" type="checkbox" />
+        <span>把字幕烧进视频（生成 .subbed.mp4，较慢）</span>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button id="go" class="primary" disabled>开始</button>
+      <button id="reset" class="ghost">清空</button>
+      <span id="status" class="status">等待文件</span>
+    </div>
+
+    <div class="bar"><div id="barFill" class="bar-fill"></div></div>
+  </section>
+
+  <section class="card" id="resultCard" hidden>
+    <div class="result-head">
+      <h2 id="resultTitle">结果</h2>
+      <div id="downloads" class="downloads"></div>
+    </div>
+    <div class="table-wrap">
+      <table id="segTable">
+        <thead><tr><th class="c-time">时间</th><th>字幕</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>本地运行 · faster-whisper (CPU) · ffmpeg</span>
+  <span>字幕 srt · vtt · txt · json</span>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
