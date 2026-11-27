@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+work/
+*.srt
+*.vtt
+*.json.local
+!demo/*.srt
+!demo/*.vtt
+dist/
+.venv/
